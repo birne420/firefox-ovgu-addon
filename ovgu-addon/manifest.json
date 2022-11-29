@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 	"name": "OvGU Addon",
-	"version": "1.10",
-	"description": "OvGU Dark Theme, Version 1.10",
+	"version": "1.20",
+	"description": "OvGU Web Utility Addon, Version 1.20",
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "ovguaddon@github",
@@ -14,7 +14,8 @@
 			"matches": [
 				"*://elearning.ovgu.de/*",
 				"*://idp-serv.uni-magdeburg.de/*",
-				"*://lsf.ovgu.de/*"
+				"*://lsf.ovgu.de/*",
+				"*://*.ovgu.de/*"
 			],
 			"js": [
 				"jq.js",

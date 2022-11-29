@@ -11,18 +11,19 @@ function println(t) {
 ///////////////////
 
 const enableHoverAnimation = true;
-const hoverAnimationDuration = 250;
+const hoverAnimationDuration = 200;
 
 const transparent="rgba(0,0,0,0)";
+const boxShadowColor="rgba(0,0,0,0.2)";
+const boxShadow="0 0 10px 10px " + boxShadowColor;
 
 const backgroundColor="#202020";
-const backgroundColorLight="#303030";
+const backgroundColorLight="#202530";
 
 const foregroundColor="#dbdbdb";
 const foregroundColorLight="#ffffff";
 
 const accentColor="#708090";
-const accentColorLight="#8090a0";
 
 //////////////////////////
 // TARGET PAGE ELEMENTS //
@@ -68,8 +69,17 @@ const hoverColorElements = [
 // COLORIZING UTILITY //
 ////////////////////////
 
-//remove primary color css class to unlock color change
+//altering color css classes to unlock color change
 $("nav").removeClass("bg-primary");
+$("nav").css("box-shadow", boxShadow);
+$("[id^=drop-down-menu-]").css("box-shadow", boxShadow);
+
+//ovgu faculty sites
+$("div.ubox_linkblock").css("line-height", "1.125rem");
+$("div.ubox_linkblock").css("padding", "0.5rem 0.6rem 0.1rem 0.6rem");
+$("div.ubox_linkblock").css("display", "inline-block");
+$("div.ubox_linkblock").css("width", "100%");
+$("div.ubox_linkblock").removeClass("ubox_linkblock");
 
 //recolorize object 'id', 'c' is background, 'd' is foreground
 function _css_c(id, c, d) {
@@ -86,8 +96,8 @@ function _css_h(id, c, d) {
     _css_c(id, c, d);
 
     if(enableHoverAnimation) {
-        $(id).attr("onMouseOver", "this.style.transition='all " + hoverAnimationDuration + "ms';this.style.background='" + d + "';this.style.color='" + c + "'");
-        $(id).attr("onMouseOut", "this.style.transition='all " + hoverAnimationDuration + "ms';this.style.background='" + c + "';this.style.color='" + d + "'");
+        $(id).attr("onMouseOver", "this.style.transition='all " + hoverAnimationDuration + "ms';this.style.background='" + d + "';this.style.color='" + c + "';this.style.boxShadow='" + boxShadow + "';");
+        $(id).attr("onMouseOut", "this.style.transition='all " + hoverAnimationDuration + "ms';this.style.background='" + c + "';this.style.color='" + d + "';this.style.boxShadow='0 0 0 0 " + boxShadowColor + "';");
     }
 }
 
