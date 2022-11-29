@@ -1,8 +1,14 @@
 {
 	"manifest_version": 2,
 	"name": "OvGU Addon",
-	"version": "1.0",
+	"version": "1.0.1",
 	"description": "Dark theme.",
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "ovguaddon@github",
+			"strict_min_version": "42.0"
+		}
+	},
 	"content_scripts": [{
 		"matches": [
 			"*://elearning.ovgu.de/*",
