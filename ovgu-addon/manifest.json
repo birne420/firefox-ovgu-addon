@@ -1,0 +1,17 @@
+{
+	"manifest_version": 2,
+	"name": "OvGU Addon",
+	"version": "1.0",
+	"description": "Dark theme.",
+	"content_scripts": [{
+		"matches": [
+			"*://elearning.ovgu.de/*",
+			"*://idp-serv.uni-magdeburg.de/*",
+			"*://lsf.ovgu.de/*"
+		],
+		"js": [
+			"jq.js",
+            "dark.js"
+        ]
+	}]
+}
