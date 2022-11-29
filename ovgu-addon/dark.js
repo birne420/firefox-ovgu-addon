@@ -1,30 +1,32 @@
+//init message
+println("applying dark theme...");
+
+//basic print utility
 function println(t) {
     console.log("[ovgu e-learning addon] " + t);
 }
 
-println("applying dark theme...");
+///////////////////
+// COLOR DEFINES //
+///////////////////
 
-$("nav").removeClass("bg-primary");
+const enableHoverAnimation = true;
+const hoverAnimationDuration = 250;
 
 const transparent="rgba(0,0,0,0)";
-const foregroundColor="#dbdbdb";
-const foregroundColorLight="#ffffff";
+
 const backgroundColor="#202020";
 const backgroundColorLight="#303030";
+
+const foregroundColor="#dbdbdb";
+const foregroundColorLight="#ffffff";
+
 const accentColor="#708090";
 const accentColorLight="#8090a0";
 
-function _css_bg(id, c) {
-    println("background: " + id + " --> " + c);
-    $(id).css("background", c);
-    $("head").append("<style>" + id + "{background:" + c + "}</style>");
-}
-
-function _css_fg(id, c) {
-    println("color: " + id + " --> " + c);
-    $(id).css("color", c);
-    $("head").append("<style>" + id + "{color:" + c + "}</style>");
-}
+//////////////////////////
+// TARGET PAGE ELEMENTS //
+//////////////////////////
 
 const defaultElements = [
     "html",
@@ -41,12 +43,9 @@ const defaultElements = [
 const defaultElementsLight = [
     "select",
     "input",
-    "button",
     "nav",
-    "nav span",
+    "nav",
     "nav div",
-    "a",
-    "a:hover",
     "pre"
 ];
 const accentColorElements = [
@@ -60,14 +59,53 @@ const accentColorElements = [
     "strong",
     "b"
 ]
+const hoverColorElements = [
+    "a",
+    "button"
+]
 
-defaultElements.map(x => _css_bg(x, backgroundColor));
-defaultElements.map(x => _css_fg(x, foregroundColor));
+////////////////////////
+// COLORIZING UTILITY //
+////////////////////////
 
-defaultElementsLight.map(x => _css_bg(x, backgroundColorLight));
-defaultElementsLight.map(x => _css_fg(x, foregroundColorLight));
+//remove primary color css class to unlock color change
+$("nav").removeClass("bg-primary");
 
-accentColorElements.map(x => _css_bg(x, backgroundColor));
-accentColorElements.map(x => _css_fg(x, accentColor));
+//recolorize object 'id', 'c' is background, 'd' is foreground
+function _css_c(id, c, d) {
+    println(id + " --> " + c + ", " + d);
 
+    $(id).css("background", c);
+    $(id).css("color", d);
+
+    $("head").append("<style>" + id + "{background:" + c + ";color:" + d + ";}</style>");
+}
+
+//recolorize object 'id', 'c' is background, 'd' is foreground, both will be switched on hover
+function _css_h(id, c, d) {
+    _css_c(id, c, d);
+
+    if(enableHoverAnimation) {
+        $(id).attr("onMouseOver", "this.style.transition='all " + hoverAnimationDuration + "ms';this.style.background='" + d + "';this.style.color='" + c + "'");
+        $(id).attr("onMouseOut", "this.style.transition='all " + hoverAnimationDuration + "ms';this.style.background='" + c + "';this.style.color='" + d + "'");
+    }
+}
+
+//////////////////
+// RECOLOR PAGE //
+//////////////////
+
+//apply dark color
+defaultElements.map(x => _css_c(x, backgroundColor, foregroundColor));
+
+//apply dark color variation
+defaultElementsLight.map(x => _css_c(x, backgroundColorLight, foregroundColorLight));
+
+//apply accent colors
+accentColorElements.map(x => _css_c(x, backgroundColor, accentColor));
+
+//apply hover color
+hoverColorElements.map(x => _css_h(x, backgroundColorLight, foregroundColorLight));
+
+//finish message
 println("dark theme applied!");

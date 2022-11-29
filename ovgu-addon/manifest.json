@@ -1,23 +1,34 @@
 {
 	"manifest_version": 2,
 	"name": "OvGU Addon",
-	"version": "1.0.1",
-	"description": "Dark theme.",
+	"version": "1.10",
+	"description": "OvGU Dark Theme, Version 1.10",
 	"browser_specific_settings": {
 		"gecko": {
 			"id": "ovguaddon@github",
 			"strict_min_version": "42.0"
 		}
 	},
-	"content_scripts": [{
-		"matches": [
-			"*://elearning.ovgu.de/*",
-			"*://idp-serv.uni-magdeburg.de/*",
-			"*://lsf.ovgu.de/*"
-		],
-		"js": [
-			"jq.js",
-            "dark.js"
-        ]
-	}]
+	"content_scripts": [
+		{
+			"matches": [
+				"*://elearning.ovgu.de/*",
+				"*://idp-serv.uni-magdeburg.de/*",
+				"*://lsf.ovgu.de/*"
+			],
+			"js": [
+				"jq.js",
+				"dark.js"
+			]
+		},
+		{
+			"matches": [
+				"*://idp-serv.uni-magdeburg.de/idp/profile/SAML2/Redirect/SSO*"
+			],
+			"js": [
+				"jq.js",
+				"accept.js"
+			]
+		}
+	]
 }
