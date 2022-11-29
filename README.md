@@ -1,2 +1,2 @@
-# firefox-ovgu-addon
-OvGU Addon (Dark Theme)
+# OvGU Addon für Firefox
+- Web im Dark Mode für `elearning.ovgu.de` und `lsf.ovgu.de`
