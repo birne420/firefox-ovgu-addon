@@ -3,3 +3,6 @@
 1. [Download](https://github.com/birne420/firefox-ovgu-addon/raw/main/ovgu-addon.zip)
 2. `about:config` aufrufen, nach `xpinstall.signatures.required` suchen und auf `false` setzen
 3. `about:addons` aufrufen, Addon aus Datei installieren
+## ToDo
+- remove ?forcedownload from pdf links
+- open pdf links in new tab
